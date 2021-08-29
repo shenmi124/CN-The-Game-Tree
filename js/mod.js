@@ -1,45 +1,97 @@
 let modInfo = {
 	name: "游戏树",
-	id: "Gamemod",
-	author: "nobody",
+	id: "Gamemodv0.3",
+	author: "辉影神秘（mysterious_124）",
 	pointsName: "时间",
 	modFiles: ["layers.js", "tree.js"],
 
 	discordName: "",
 	discordLink: "",
-	initialStartPoints: new Decimal (10), // Used for hard resets and new players
-	offlineLimit: 1,  // In hours
+	initialStartPoints: new Decimal (0), // Used for hard resets and new players
+	offlineLimit: 0,  // In hours
 }
 
 // Set your version in num and name
 let VERSION = {
-	num: "0.2",
+	num: "0.3.4.3",
 	name: "Literally nothing",
 }
 
-let changelog = `<h1>更新日志:</h1><br>
-<h2>获得升级</h2><br>
+let changelog = `<h1>Changelog:</h1><br>
+<h2>Attack!</h2><br>
+	<h3>v0.3.4.3</h3><br>
+		- Made three new runes<br>
+	<h3>v0.3.3.3</h3><br>
+		- Balance the game<br>
+	<h3>v0.3.3.2</h3><br>
+		- Balance the game<br>
+		- "Endurance Rune" I is ready<br>
+	<h3>v0.3.3.1</h3><br>
+		- Fix bugs where time cannot be produced<br>
+		- Added rwo unescapes in "$"<br>
+	<h3>v0.3.3</h3><br>
+		- Added one buyables in "b"<br>
+		- Added some upgrades<br>
+		- Modify "s" challenge<br>
+	<h3>v0.3.2</h3><br>
+		- Added "bm"<br>
+		- Added some upgrades<br>
+		- "stone!" effect 150% -> 175%<br>
+	<h3>v0.3.1</h3><br>
+		- "a" little bit is added to the a layer<br>
+		- Added "ATK" in "a"
+	<h3>v0.3</h3><br>
+		- Added "b"<br>
+		- Added "a"<br>
+		- Added "c"<br>
+		- Modify "w" colour<br>
+<h2>Getting an Upgrade</h2><br>
+	<h3>v0.2.4.3</h3><br>
+		- Fix three bugs<br>
+		- Complete "w","$","s"<br>
+	<h3>v0.2.4.2</h3><br>
+		- Fix two bugs<br>
+	<h3>v0.2.4.1</h3><br>
+		- Modify a series of values<br>
+		- Added one challenge in "s"<br>
+		- Modify s21challenge effect<br>
+		- Added two upgrades in "w"<br>
+	<h3>v0.2.3.1</h3><br>
+		- Fix the bug<br>
+	<h3>v0.2.3</h3><br>
+		- Added two upgrades in "w"<br>
+		- Added one challenge in "s"<br>
+	<h3>v0.2.2</h3><br>
+		- Added one upgrade in "$"<br>
+		- Modify a series of data<br>
+		- Added one challenge in "s"<br>
+		- Fix the bug “10wood -> 3$” cannot be purchased before 10wood<br>
+	<h3>v0.2.1</h3><br>
+		- “10wood -> 3$” effect modification<br>
+		- Added s0milestone & one challenge in "s"<br>
+		- Added one upgrades in "w"<br>
+		- Modify a series of w upgrade costs<br>
 	<h3>v0.2</h3><br>
-		- 增加 “s”层。<br>
-		- $层里程碑0效果介绍修正<br>
-<h2>虚拟与现实？</h2><br>
+		- Added s.<br>
+		- $0milestone effectDescription correction<br>
+<h2>Virtual and reality?</h2><br>
 	<h3>v0.1.3.2</h3><br>
-		- “w”升级11&12指数+0.5
+		- "w" upgrades 11&12 index +0.5<br>
 	<h3>v0.1.3.1</h3><br>
-		- “太多了!”已经做好<br>
+		- "too much!" is ready<br>
 	<h3>v0.1.2.1</h3><br>
-		- 修复$层里程碑0没有效果<br>
-		- 修复“w”层的显示bug<br>
+		- Fix the bug that $0milestone has no effect<br>
+		- Fix the display bug of w layer purchase<br>
 	<h3>v0.1.2</h3><br>
-		- ”太多了!“有了一个按钮，但是没有用<br>
-		- 修复 "工艺品" 的bug并且修改数值<br>
+		- "too much!" has an butten, but cannot be clicked<br>
+		- Fix "Crafts" bug and made a numerical modification<br>
+		- Added one upgrades&milestones in "$"<br>
 	<h3>v0.1.1</h3><br>
-	    - “w”价格公式放缓，“原木！”，“游戏树真的太棒了（强调）！”公式得到了改进 <br>
-		- “w”层新增2个升级<br>
+	    - "w" The price formula has slowed down, and the "wood", "The Game Tree is AWESOME!" formula has been improved <br>
+		- Added two upgrades in "w"<br>
 	<h3>v0.1</h3><br>
-		- 增加 “$”层。<br>
-		- 增加 “w”层。`
-
+		- Added $.<br>
+		- Added w.`
 
 let winText = `Congratulations! You have reached the end and beaten this game, but for now...`
 
@@ -53,15 +105,25 @@ function getStartPoints(){
 
 // Determines if it should show points/sec
 function canGenPoints(){
-	return true
+	return hasUpgrade("$", 11);
 }
 
 // Calculate points/sec!
 function getPointGen() {
 	if(!canGenPoints())
 		return new Decimal(0)
-
-	let gain = new Decimal(1)
+	let gain = new Decimal(0.5)
+		if (hasUpgrade('$', 12)) gain = new Decimal(0.6)
+		if (hasUpgrade('$', 13)) gain = new Decimal(0.75)
+		if (hasUpgrade('$', 13)) gain = new Decimal(0.875)
+		if (hasUpgrade('w', 11)) gain = gain.times(upgradeEffect('w', 11))
+		if (hasUpgrade('w', 24)) gain = gain.times(upgradeEffect('w', 24))
+		if (hasUpgrade('s',11)) gain = gain.mul(2)
+		if (getBuyableAmount("b", 12).gte(1)) gain = gain.mul(buyableEffect('b',12))
+		if (inChallenge('s',11)) gain = gain.mul(0.75)
+		if (inChallenge('s',12)) gain = gain.mul(0.65)
+		if (inChallenge('s',21)) gain = gain.mul(0.55)
+		if (inChallenge('s',22)) gain = gain.mul(0.45)
 	return gain
 }
 
@@ -71,6 +133,8 @@ function addedPlayerData() { return {
 
 // Display extra things at the top of the page
 var displayThings = [
+	function(){return"V是虚拟的 | R是现实的"},
+	function(){return"当前残局：1煤炭（然而当前没有煤炭）"},
 ]
 
 // Determines when the game "ends"
