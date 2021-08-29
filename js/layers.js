@@ -616,7 +616,7 @@ addLayer("b", {
 			cost(x) { 
 				return new Decimal(1000).add(99000*x)
 			},
-			title:"力量 I",
+			title:"力量符文 I",
 			display() { return "根据血增加攻击力底数<br>"+"花费:"+format(this.cost())+"<br>"+format(getBuyableAmount(this.layer, this.id))+"/2<br>"+"效果:+"+format(this.effect())},
 			canAfford() { return player[this.layer].points.gte(this.cost()) },
 			buy() {
