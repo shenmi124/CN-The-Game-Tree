@@ -558,7 +558,7 @@ addLayer("b", {
 				return new Decimal(1000).add(99000*x)
 			},
 			title:"效率符文 I",
-			display() { return "cost:"+format(this.cost())+"<br>"+format(getBuyableAmount(this.layer, this.id))+"/2<br>"+"Currently:+"+format(getBuyableAmount(this.layer, this.id))+" “kill it”"},
+			display() { return "获得格外的 ”杀死他！“<br>"+"花费:"+format(this.cost())+"<br>"+format(getBuyableAmount(this.layer, this.id))+"/2<br>"+"效果:+"+format(getBuyableAmount(this.layer, this.id))+" “杀死他！”"},
 			canAfford() { return player[this.layer].points.gte(this.cost()) },
 			buy() {
 				player[this.layer].points = player[this.layer].points.sub(this.cost())
@@ -572,7 +572,7 @@ addLayer("b", {
 				return new Decimal(1000).add(99000*x)
 			},
 			title:"耐力符文 I",
-			display() { return "cost:"+format(this.cost())+"<br>"+format(getBuyableAmount(this.layer, this.id))+"/2<br>"+"Currently:"+format(this.effect())+"x"},
+			display() { return "根据血增加时间获取<br>"+"花费:"+format(this.cost())+"<br>"+format(getBuyableAmount(this.layer, this.id))+"/2<br>"+"效果:"+format(this.effect())+"x"},
 			canAfford() { return player[this.layer].points.gte(this.cost()) },
 			buy() {
 				player[this.layer].points = player[this.layer].points.sub(this.cost())
@@ -596,7 +596,7 @@ addLayer("b", {
 				return new Decimal(1000).add(99000*x)
 			},
 			title:"速度符文 I",
-			display() { return "cost:"+format(this.cost())+"<br>"+format(getBuyableAmount(this.layer, this.id))+"/2<br>"+"Currently:-"+format(this.effect())},
+			display() { return "减少血魔法获取底数<br>"+"花费:"+format(this.cost())+"<br>"+format(getBuyableAmount(this.layer, this.id))+"/2<br>"+"效果:-"+format(this.effect())},
 			canAfford() { return player[this.layer].points.gte(this.cost()) },
 			buy() {
 				player[this.layer].points = player[this.layer].points.sub(this.cost())
@@ -617,7 +617,7 @@ addLayer("b", {
 				return new Decimal(1000).add(99000*x)
 			},
 			title:"力量 I",
-			display() { return "cost:"+format(this.cost())+"<br>"+format(getBuyableAmount(this.layer, this.id))+"/2<br>"+"Currently:+"+format(this.effect())},
+			display() { return "根据血增加攻击力底数<br>"+"花费:"+format(this.cost())+"<br>"+format(getBuyableAmount(this.layer, this.id))+"/2<br>"+"效果:+"+format(this.effect())},
 			canAfford() { return player[this.layer].points.gte(this.cost()) },
 			buy() {
 				player[this.layer].points = player[this.layer].points.sub(this.cost())
