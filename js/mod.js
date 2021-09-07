@@ -1,8 +1,8 @@
 let modInfo = {
-	name: "游戏树",
+	name: "The Game Tree",
 	id: "Gamemodv0.3",
-	author: "辉影神秘（mysterious_124）",
-	pointsName: "时间",
+	author: "mysterious_124",
+	pointsName: "time",
 	modFiles: ["layers.js", "tree.js"],
 
 	discordName: "",
@@ -12,13 +12,105 @@ let modInfo = {
 }
 
 // Set your version in num and name
+
+
+// If you add new functions anywhere inside of a layer, and those functions have an effect when called, add them here.
+// (The ones here are examples, all official functions are already taken care of)
+var doNotCallTheseFunctionsEveryTick = ["blowUpEverything"]
+
+function getStartPoints(){
+    return new Decimal(modInfo.initialStartPoints)
+}
+
+// Determines if it should show points/sec
+function canGenPoints(){
+	return hasUpgrade("$", 11);
+}
+
+// Calculate points/sec!
+function getPointGen() {
+	if(!canGenPoints())
+		return new Decimal(0)
+	let gain = new Decimal(0.5)
+		if (hasUpgrade('$', 12)) gain = new Decimal(0.6)
+		if (hasUpgrade('$', 13)) gain = new Decimal(0.75)
+		if (hasUpgrade('$', 13)) gain = new Decimal(0.875)
+		if (hasUpgrade('w', 11)) gain = gain.times(upgradeEffect('w', 11))
+		if (hasUpgrade('w', 24)) gain = gain.times(upgradeEffect('w', 24))
+		if (hasUpgrade('s',11)) gain = gain.mul(2)
+		if (getBuyableAmount("b", 12).gte(1)) gain = gain.mul(buyableEffect('b',12))
+		if (getBuyableAmount("b", 22).gte(1)) gain = gain.mul(buyableEffect('b',22))
+		if (inChallenge('s',11)) gain = gain.mul(0.75)
+		if (inChallenge('s',12)) gain = gain.mul(0.65)
+		if (inChallenge('s',21)) gain = gain.mul(0.55)
+		if (inChallenge('s',22)) gain = gain.mul(0.45)
+		if (inChallenge('c',11)) gain = gain.mul(0.5)
+		if (inChallenge('c',12)) gain = gain.mul(0.4)
+	return gain
+}
+
+// You can add non-layer related variables that should to into "player" and be saved here, along with default values
+function addedPlayerData() { return {
+}}
+
+// Display extra things at the top of the page
+var displayThings = [
+	function(){return"V is Virtual | R is Reality"},
+	function(){return"Current endgame: 1 iron"},
+	function(){return"因为学业，不知道什么时候才能继续更新"},
+]
+
+// Determines when the game "ends"
+function isEndgame() {
+	return player.i.points.gte(new Decimal("1"))
+}
+
+
+
+// Less important things beyond this point!
+
+// Style for the background, can be a function
+var backgroundStyle = {
+
+}
+
+// You can change this if you have things that can be messed up by long tick lengths
+function maxTickLength() {
+	return(3600) // Default is 1 hour which is just arbitrarily large
+}
+
+// Use this if you need to undo inflation from an older version. If the version is older than the version that fixed the issue,
+// you can cap their current resources with this.
+function fixOldSave(oldVersion){
+}
+
 let VERSION = {
-	num: "0.3.4.4",
-	name: "Literally nothing",
+	num: "0.4.1",
+	name: "Achievement",
 }
 
 let changelog = `<h1>Changelog:</h1><br>
+<h2>Achievement</h2><br>
+	<h3>v0.4.1</h3><br>
+		- What has been updated?<br>
+	<h3>v0.4</h3><br>
+		- Due to a bug, temporarily remove the effect of Rune 24.<br>
+		- Added Hidden Achievements<br>
+		- Fix some bugs<br>
 <h2>Attack!</h2><br>
+	<h3>v0.3.6.7</h3><br> 
+		- Modified a lot of things<br>
+	<h3>v0.3.6.6</h3><br> 
+		- Fix some bugs<br>
+	<h3>v0.3.6.5</h3><br>
+		- Added "i"!But it cannot be unlocked at the moment<br>
+		- Rune is ready<br>
+		- Added and modified a lot<br>
+	<h3>v0.3.5.5</h3><br>
+		- Fix some bug.<br>
+	<h3>v0.3.5.4</h3><br>
+		- Added one rune.<br>
+		- Added some upgrade.<br>
 	<h3>v0.3.4.4</h3><br>
 		- Change rune formula, increase rune effect display<br>
 	<h3>v0.3.4.3</h3><br>
@@ -96,69 +188,3 @@ let changelog = `<h1>Changelog:</h1><br>
 		- Added w.`
 
 let winText = `Congratulations! You have reached the end and beaten this game, but for now...`
-
-// If you add new functions anywhere inside of a layer, and those functions have an effect when called, add them here.
-// (The ones here are examples, all official functions are already taken care of)
-var doNotCallTheseFunctionsEveryTick = ["blowUpEverything"]
-
-function getStartPoints(){
-    return new Decimal(modInfo.initialStartPoints)
-}
-
-// Determines if it should show points/sec
-function canGenPoints(){
-	return hasUpgrade("$", 11);
-}
-
-// Calculate points/sec!
-function getPointGen() {
-	if(!canGenPoints())
-		return new Decimal(0)
-	let gain = new Decimal(0.5)
-		if (hasUpgrade('$', 12)) gain = new Decimal(0.6)
-		if (hasUpgrade('$', 13)) gain = new Decimal(0.75)
-		if (hasUpgrade('$', 13)) gain = new Decimal(0.875)
-		if (hasUpgrade('w', 11)) gain = gain.times(upgradeEffect('w', 11))
-		if (hasUpgrade('w', 24)) gain = gain.times(upgradeEffect('w', 24))
-		if (hasUpgrade('s',11)) gain = gain.mul(2)
-		if (getBuyableAmount("b", 12).gte(1)) gain = gain.mul(buyableEffect('b',12))
-		if (inChallenge('s',11)) gain = gain.mul(0.75)
-		if (inChallenge('s',12)) gain = gain.mul(0.65)
-		if (inChallenge('s',21)) gain = gain.mul(0.55)
-		if (inChallenge('s',22)) gain = gain.mul(0.45)
-	return gain
-}
-
-// You can add non-layer related variables that should to into "player" and be saved here, along with default values
-function addedPlayerData() { return {
-}}
-
-// Display extra things at the top of the page
-var displayThings = [
-	function(){return"V是虚拟的 | R是现实的"},
-	function(){return"当前残局：1煤炭（然而当前没有煤炭）"},
-]
-
-// Determines when the game "ends"
-function isEndgame() {
-	return player.points.gte(new Decimal("e280000000"))
-}
-
-
-
-// Less important things beyond this point!
-
-// Style for the background, can be a function
-var backgroundStyle = {
-
-}
-
-// You can change this if you have things that can be messed up by long tick lengths
-function maxTickLength() {
-	return(3600) // Default is 1 hour which is just arbitrarily large
-}
-
-// Use this if you need to undo inflation from an older version. If the version is older than the version that fixed the issue,
-// you can cap their current resources with this.
-function fixOldSave(oldVersion){
-}
