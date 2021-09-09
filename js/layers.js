@@ -29,6 +29,9 @@ addLayer("$", {
     gainExp() { // Calculate the exponent on main currency from bonuses
         return new Decimal(1)
     },
+	update(diff) {
+		generatePoints("$", this.revenue(diff))
+	},
     row: 0, // Row the layer is in on the tree (0 is the first row)
     hotkeys: [
         {key: "$", description: "$: Reset for $ points", onPress(){if (canReset(this.layer)) doReset(this.layer)}},
@@ -170,7 +173,11 @@ addLayer("$", {
 				},
 			},
 		},
-		passiveGeneration() { return hasMilestone("$", 0)?0.05:0 }
+		revenue(diff) {
+			let $u = 0
+			if (hasMilestone("$",0)) $u += 5
+			return diff * $u / 100
+		}
 })
 
 
@@ -217,7 +224,7 @@ addLayer("w", {
     row: 0, 
 	update(diff) {
 			generatePoints("w", this.revenue(diff))
-		},
+	},
     hotkeys: [
         {key: "w", description: "w: Reset for w points", onPress(){if (canReset(this.layer)) doReset(this.layer)}},
     ],
