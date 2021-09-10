@@ -105,6 +105,7 @@ var cnItems = {
 	"You got wood, which makes you feel excited, you want to spend more time playing this game": "你有了原木，这让你感到兴奋，你想花更多的时间玩这个游戏",
 	"Enough!": "够多了!",
 	"yeeeeeeeee": "恶臭",
+	"you find 0 Hidden Achievements": "你找了了0个隐藏成就",
 	"you find 1 Hidden Achievements": "你找了了1个隐藏成就",
 	"you find 2 Hidden Achievements": "你找了了2个隐藏成就",
 	"you find 3 Hidden Achievements": "你找了了3个隐藏成就",
@@ -384,4 +385,4 @@ var cnRegReplace = new Map([
 	[/([\d\.,]+) attack/, '$1 攻击'],
 	[/([\d\.,]+) attack/, '$1 攻击'],
 	[/([\d\.,]+) attack/, '$1 攻击'],
-]);
+]); 
