@@ -83,12 +83,15 @@ function fixOldSave(oldVersion){
 }
 
 let VERSION = {
-	num: "0.5.1.2",
+	num: "0.5.2.2",
 	name: "Art",
 }
 
 let changelog = `<h1>Changelog:</h1><br>
 <h2>Art</h2><br>
+	<h3>v0.5.2.2</h3><br>
+		- Fix bug<br>
+		- Modify "a"<br>
 	<h3>v0.5.1.2</h3><br>
 		- Art!<br>
 		- Added "d"<br>
@@ -189,14 +192,14 @@ let changelog = `<h1>Changelog:</h1><br>
 		- Fix the bug that $0milestone has no effect<br>
 		- Fix the display bug of w layer purchase<br>
 	<h3>v0.1.2</h3><br>
-		- "too much!" has an butten, but cannot be clicked<br>
-		- Fix "Crafts" bug and made a numerical modification<br>
-		- Added one upgrades&milestones in "$"<br>
+		- "太多了!"拥有一个按钮,但是还不能点击<br>
+		- 修复"工艺品"的bug并进行数值修改<br>
+		- 在"$"层添加一个里程碑和升级<br>
 	<h3>v0.1.1</h3><br>
-	    - "w" The price formula has slowed down, and the "wood", "The Game Tree is AWESOME!" formula has been improved <br>
-		- Added two upgrades in "w"<br>
+	    - "w"价格公式放缓,“原木!”,“游戏树真的太棒了!(强调)”公式得到了改进 <br>
+		- 在"w"层增加2个升级<br>
 	<h3>v0.1</h3><br>
-		- Added $.<br>
-		- Added w.`
+		- 增加$层<br>
+		- 增加w层`
 
 let winText = `Congratulations! You have reached the end and beaten this game, but for now...`
