@@ -49,10 +49,9 @@
 	</style>
 	<p class="round3"><a href="https://shenmi124.github.io/The-Game-Tree/" class="copyright" target="_blank">The Game Tree </a>by mysterious_124</p>
 	<div id="app">
+		<canvas id="treeCanvas" class="canvas" v-if="!(tmp.gameEnded && !player.keepGoing)"></canvas>
 		<script src="chs.js?07071443"></script>
 		<script src="https://cdn.jsdelivr.net/gh/g8hh/g8hh.github.io/zh/core.js"></script>
-		<canvas id="treeCanvas" class="canvas" v-if="!(tmp.gameEnded && !player.keepGoing)"></canvas>
-
 		<div v-if="false" id="loadingSection" class="fullWidth">
 			<h1>Loading... (If this takes too long it means there was a serious error!)←</h1>
 		</div>
