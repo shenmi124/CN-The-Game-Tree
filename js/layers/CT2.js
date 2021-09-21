@@ -44,7 +44,10 @@ addLayer("i", {
 				title:"Changing times",
 				description:"Keep the tech tree, i milestones forever and i points",
 				cost:new Decimal(0),
-				style() {return {'border-color': "#F0F0F0" }}
+				style() {return {'border-color': "#F0F0F0" }},
+				unlocked(){
+					return hasMilestone("i",0)
+				},
 			},
 			12:{
 				title:"technology era",
