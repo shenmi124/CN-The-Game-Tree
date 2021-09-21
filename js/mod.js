@@ -215,4 +215,4 @@ let changelog = `<h1>Changelog:</h1><br>
 		- Added $.<br>
 		- Added w.`
 
-let winText = `I will update soon, please do not continue the game!`
+let winText = `我很快会继续更新,请不要继续游戏!`
