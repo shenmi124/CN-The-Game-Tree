@@ -39,6 +39,7 @@ function getPointGen() {
 		if (hasUpgrade('w', 24)) gain = gain.times(upgradeEffect('w', 24))
 		if (hasUpgrade('w', 33)) gain = gain.times(upgradeEffect('w', 33))	
 		if (hasUpgrade('s', 11)) gain = gain.times(upgradeEffect('s', 11))
+		if (hasMilestone('i', 0)) gain = gain.mul(20)
 		if (getBuyableAmount("b", 12).gte(1)) gain = gain.mul(buyableEffect('b',12))
 		if (inChallenge('s',11)) gain = gain.mul(0.8)
 		if (inChallenge('s',12)) gain = gain.mul(0.7)
@@ -84,12 +85,15 @@ function fixOldSave(oldVersion){
 }
 
 let VERSION = {
-	num: "0.6",
+	num: "0.6.1",
 	name: "Metal age",
 }
 
 let changelog = `<h1>Changelog:</h1><br>
 <h2>Metal age</h2><br>
+	<h3>v0.6.1</h3><br>
+		- Fix c & d Numerical value is abnormal<br>
+		- Added t milestone<br> 
 	<h3>v0.6</h3><br>
 		- Now you can get iron<br>
 		- Changed to much things<br>
@@ -201,14 +205,14 @@ let changelog = `<h1>Changelog:</h1><br>
 		- Fix the bug that $0milestone has no effect<br>
 		- Fix the display bug of w layer purchase<br>
 	<h3>v0.1.2</h3><br>
-		- "太多了!"拥有一个按钮,但是还不能点击<br>
-		- 修复"工艺品"的bug并进行数值修改<br>
-		- 在"$"层添加一个里程碑和升级<br>
+		- "too much!" has an butten, but cannot be clicked<br>
+		- Fix "Crafts" bug and made a numerical modification<br>
+		- Added one upgrades&milestones in "$"<br>
 	<h3>v0.1.1</h3><br>
-	    - "w"价格公式放缓,“原木!”,“游戏树真的太棒了!(强调)”公式得到了改进 <br>
-		- 在"w"层增加2个升级<br>
+	    - "w" The price formula has slowed down, and the "wood", "The Game Tree is AWESOME!" formula has been improved <br>
+		- Added two upgrades in "w"<br>
 	<h3>v0.1</h3><br>
-		- 增加$层<br>
-		- 增加w层`
+		- Added $.<br>
+		- Added w.`
 
-let winText = `Congratulations! You have reached the end and beaten this game, but for now...`
+let winText = `I will update soon, please do not continue the game!`
