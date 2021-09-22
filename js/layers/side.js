@@ -103,7 +103,7 @@ addLayer("ha", {
 		17: {
             name: "Long time changes",
             done() {
-				return options.CTa ? "":true
+				return options.CTa ? true:""
 			},
             tooltip() {
                 return `<div style="font-size: 14px">Long time changes<br>
@@ -140,7 +140,7 @@ addLayer("ct", {
     resource: "Changing Times",
     type: "none",
     row: "side", 
-    layerShown(){return options.CTa ? (hasAchievement('ct', 17)) ? false:true :true},
+    layerShown(){return options.CTa ?  true : (hasAchievement('ct', 17)) ? false:true},
 	tooltip() {
         return ("Changing Times 1")
     },

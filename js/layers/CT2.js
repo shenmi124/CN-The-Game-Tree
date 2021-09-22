@@ -26,7 +26,7 @@ addLayer("i", {
     hotkeys: [
         {key: "i", description: "i: Reset for i points", onPress(){if (canReset(this.layer)) doReset(this.layer)}},
     ],
-    layerShown(){return hasMilestone("d",4) || player.i.points >= 0.01},
+    layerShown(){return hasMilestone("d",4) || hasMilestone("i",0)},
 		milestones:{
 			0: {
 				requirementDescription: "get iron",
@@ -210,10 +210,11 @@ addLayer("fm", {
 				display(){return "The flame is burning<br>You will get Fire every time you fan<br>You have "+format(player.fm.f)+" fire"},
 				canClick(){return true},
 				onClick(){
-					player.fm.f = player.fm.f.add(0.1)
+					player.fm.f = player.fm.f.add(player.fm.points / 10)
 				},
 				style() {return {'height': "145px",'width': '250px' }}
 			},
 		},
+		
 })
 
