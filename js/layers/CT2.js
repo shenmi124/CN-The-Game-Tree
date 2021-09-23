@@ -125,7 +125,7 @@ addLayer("i", {
 			},
 			16:{
 				title:"Fire magic",
-				description:"You find that metal can attach to fire",
+				description:"You find that fire can attach to metal",
 				cost:function(){
 					let ic = new Decimal(1)
 					if (hasUpgrade("i",17)) ic = ic.mul(10)
@@ -144,7 +144,7 @@ addLayer("i", {
 			},
 			17:{
 				title:"Water magic",
-				description:"You find that metal can attach to water",
+				description:"You find that water can attach to metal",
 				cost:function(){
 					let ic = new Decimal(1)
 					if (hasUpgrade("i",16)) ic = ic.mul(10)
